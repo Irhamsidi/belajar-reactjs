@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Belajar React</title>
 
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css" />
     <!-- Script -->
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
@@ -51,7 +53,50 @@
         );
       }
 
-      root.render(<HomePage />);
+      // Latihan React: Complex Counter
+      function MyButton({ text, job, status }) {
+        return (
+          <button disabled={status} onClick={job}>
+            {text}
+          </button>
+        );
+      }
+
+      function MyCounter({ value }) {
+        return <p>{value ? value : 0}</p>;
+      }
+
+      function ComplexCounter() {
+        const [score, setScore] = React.useState(0);
+        const buttonStatus = score >= 0 && score < 10 ? false : true;
+
+        function addScore() {
+          setScore(score + 1);
+        }
+
+        function removeScore() {
+          setScore(score - 1);
+        }
+
+        function resetScore() {
+          setScore(0);
+        }
+
+        return (
+          <>
+            <h1>Complex Counter</h1>
+            <div id="count">
+              <MyButton status={buttonStatus} job={removeScore} text="-" />
+              {score >= 0 && score < 10 ? <MyCounter value={score} /> : <p>Done!</p>}
+              <MyButton status={buttonStatus} job={addScore} text="+" />
+            </div>
+            <br />
+            <MyButton status={!buttonStatus} job={resetScore} text="Reset!" />
+          </>
+        );
+      }
+
+      root.render(<ComplexCounter />);
     </script>
   </body>
 </html>

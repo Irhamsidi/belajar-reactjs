@@ -1,0 +1,9 @@
+#count {
+  display: flex;
+  align-items: center;
+}
+
+#count p {
+  margin-right: 15px;
+  margin-left: 15px;
+}
